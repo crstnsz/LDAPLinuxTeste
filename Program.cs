@@ -7,16 +7,16 @@ namespace OpenLdapTeste
     {
         static void Main(string[] args)
         {
-            string username = "****";
-            string domainName = "****";
-            string password = "****";
+            string username = "admin";
+            string domainName = "localhost";
+            string password = "admin";
 
-            string userDn = $"{username}@{domainName}";
+            string userDn = $"cn=admin,dc=example,dc=org";
             try
             {
                 using (var connection = new LdapConnection {SecureSocketLayer = false})
                 {
-                    connection.Connect(domainName, LdapConnection.DEFAULT_PORT);
+                    connection.Connect("localhost", LdapConnection.DEFAULT_PORT);
                     connection.Bind(userDn, password);
                     if (connection.Bound)
                         Console.WriteLine("Sucesso");
